@@ -1,0 +1,14 @@
+{
+  "name": "namsate-react",
+  "version": "1.0.0",
+  "description": "Learning React",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Rajdeep Mallick",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.10.2"
+  }
+}
