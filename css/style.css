@@ -74,3 +74,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.top-restaurant-container {
+    margin: 10px;
+}
