@@ -1,6 +1,8 @@
-export const RestaurantCard = (props) => {
+import { CDN_URL } from "../utils/constants";
+
+const RestaurantCard = (props) => {
     const { cloudinaryImageId, name, avgRating, cuisines } = props.resObj
-    const imageUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`
+    const imageUrl = `${CDN_URL}${cloudinaryImageId}`
     return (
         <div className="restaurant-card">
             <div className="image-container">
@@ -13,4 +15,6 @@ export const RestaurantCard = (props) => {
 
         </div>
     )
-}
+};
+
+export default RestaurantCard;

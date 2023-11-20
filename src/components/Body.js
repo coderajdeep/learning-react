@@ -1,8 +1,7 @@
-import { RestaurantCard } from "./RestaurantCard"
-import { resObj } from "../mock/restaurant"
-export const Body = () => {
+import RestaurantCard from "./RestaurantCard";
+import { resObj } from "../mock/restaurant";
+const Body = () => {
     const restaurants = resObj.restaurants
-    let index = 0
     return (
         <div className="body">
             <div className="search-container">
@@ -18,4 +17,6 @@ export const Body = () => {
             </div>
         </div>
     )
-}
+};
+
+export default Body;
