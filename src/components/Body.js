@@ -1,14 +1,15 @@
 import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 import { API_URL } from "../utils/constants";
 
 const Body = () => {
-    let [ restaurants, setRestaurants ] = useState([])
+    let [restaurants, setRestaurants] = useState([])
 
     const fetechData = async () => {
         const swiggyData = await fetch(API_URL);
         const json = await swiggyData.json(swiggyData);
-        const swigyRestaurantsResp = json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants || [];
+        const swigyRestaurantsResp = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
         // fetchData is being called two times
         // Why ?
         console.log("fetchSwiggyRestaurants");
@@ -18,6 +19,23 @@ const Body = () => {
     useEffect(() => {
         fetechData();
     }, [])
+
+    if (restaurants.length === 0) {
+        return (
+            <div className="shimmer-body">
+                <div className="shimmer-res-container">{
+                        (() => {
+                            const shimmer = []
+                            for (let count = 0; count < 12; ++count) {
+                                shimmer.push(<Shimmer key={count} />)
+                            }
+                            return shimmer
+                        })()
+                    }
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="body">
@@ -49,7 +67,7 @@ const Body = () => {
             </div>
             <div className="res-container">
                 {
-                    restaurants.map(restaurant => <RestaurantCard resObj = {restaurant.info} key={restaurant.info.id}/>)
+                    restaurants.map(restaurant => <RestaurantCard resObj={restaurant.info} key={restaurant.info.id} />)
                 }
             </div>
         </div>
