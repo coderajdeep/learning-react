@@ -20,6 +20,7 @@ const Body = () => {
         fetechData();
     }, [])
 
+    // Conditional Rendering
     if (restaurants.length === 0) {
         return (
             <div className="shimmer-body">

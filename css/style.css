@@ -12,6 +12,7 @@
 
 .nav-items {
     padding: 10px 30px 0px 0px;
+    display: flex;
 }
 
 .nav-items>ul {
@@ -77,4 +78,15 @@
 
 .top-restaurant-container {
     margin: 10px;
+}
+
+.filterBtn, .resetBtn {
+    cursor: pointer;
+}
+
+.loginBtn {
+    height: 30%;
+    margin: 23px 10px 10px 20px;
+    border-radius: 20%;
+    cursor: pointer;
 }
