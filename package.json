@@ -4,6 +4,8 @@
   "description": "Learning React",
   "scripts": {
     "test": "jest",
+    "prestart": "rimraf dist .parcel-cache",
+    "prebuild": "rimraf dist .parcel-cache",
     "start": "parcel index.html",
     "build": "parcel build index.html"
   },
@@ -11,7 +13,8 @@
   "license": "ISC",
   "devDependencies": {
     "parcel": "^2.10.2",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "rimraf": "^5.0.5"
   },
   "dependencies": {
     "react": "^18.2.0",

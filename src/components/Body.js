@@ -1,7 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
 import { resObj } from "../mock/restaurant";
+import { useState } from "react";
 const Body = () => {
-    const restaurants = resObj.restaurants
+    let [ restaurants, setRestaurants ] = useState(resObj.restaurants)
     return (
         <div className="body">
             <div className="search-container">
@@ -10,17 +11,28 @@ const Body = () => {
                     <button className="search-button">Search Restaurant</button>
                 </form>
             </div>
+            <div className="filterRestaurant">
+                <button className="filterBtn" onClick={
+                    () => {
+                        const filteredRestaurant = restaurants.filter(restaurant => {
+                            return restaurant.info.avgRating >= 4.3
+                        })
+                        console.log(filteredRestaurant.map(restaurant => restaurant.info.avgRating))
+                        setRestaurants(filteredRestaurant)
+                    }
+                }
+                >Filter Top Restaurant</button>
+
+                <button className="resetBtn" onClick={
+                    () => {
+                        setRestaurants(resObj.restaurants)
+                        console.log(resObj.restaurants.map(restaurant => restaurant.info.avgRating))
+                    }
+                }
+                >Reset Restaurant</button>
+            </div>
             <div className="res-container">
                 {
-                    // Using IIFE
-                    // (() => {
-                    //     const ans = []
-                    //     for(let restaurant of restaurants) {
-                    //         ans.push(<RestaurantCard resObj = {restaurant.info} key={restaurant.info.id}/>) 
-                    //     }
-                    //     return ans
-                    // })()
-                    // Using map is generally used
                     restaurants.map(restaurant => <RestaurantCard resObj = {restaurant.info} key={restaurant.info.id}/>)
                 }
             </div>
