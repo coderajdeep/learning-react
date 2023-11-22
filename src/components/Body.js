@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { API_URL } from "../utils/constants";
 
 const Body = () => {
+    console.log('Body')
     let [restaurants, setRestaurants] = useState([])
 
     const fetechData = async () => {

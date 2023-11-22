@@ -87,6 +87,8 @@
 .loginBtn {
     height: 30%;
     margin: 23px 10px 10px 20px;
+    font-size: 15px;
+    font-weight: bolder;
     border-radius: 20%;
     cursor: pointer;
 }

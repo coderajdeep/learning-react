@@ -3,7 +3,8 @@ import { useState } from "react";
 import { LOGIN, LOGOUT } from "../utils/constants";
 
 const Header = () => {
-    let [isLoggedIn, doLogin] = useState(false)
+    console.log('Header')
+    const [isLoggedIn, doLogin] = useState(true)
     return (
         <div className="header">
             <div className="logo-container">
