@@ -2,7 +2,7 @@ import Header from "./Header";
 import Body from "./Body";
 
 const AppLayout = () => {
-    // console.log('AppLayout');
+    console.log('AppLayout');
     return (
         <div className="app">
             <Header />

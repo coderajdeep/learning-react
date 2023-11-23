@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { API_URL } from "../utils/constants";
 
 const Body = () => {
-    // console.log('Body')
+    console.log('Body')
     const [restaurants, setRestaurants] = useState([])
     const [allRestaurants, setAllRestaurants] = useState([])
     const [searchedValue, setSearchedValue] = useState('')
@@ -15,7 +15,7 @@ const Body = () => {
         const swigyRestaurantsResp = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
         // fetchData is being called two times
         // Why ?
-        console.log("fetchSwiggyRestaurants");
+        console.log("API call finished");
         setAllRestaurants(swigyRestaurantsResp);
         setRestaurants(swigyRestaurantsResp);
     }
@@ -33,20 +33,7 @@ const Body = () => {
 
     // Conditional Rendering
     if (restaurants.length === 0) {
-        return (
-            <div className="shimmer-body">
-                <div className="shimmer-res-container">{
-                    (() => {
-                        const shimmer = []
-                        for (let count = 0; count < 12; ++count) {
-                            shimmer.push(<Shimmer key={count} />)
-                        }
-                        return shimmer
-                    })()
-                }
-                </div>
-            </div>
-        )
+        return (<Shimmer/>)
     }
 
     return (
@@ -54,7 +41,6 @@ const Body = () => {
             <div className="filter">
                 <div className="search-container">
                     <input type="text" className="search-text" value={searchedValue} onChange={(e) => {
-                        console.log(searchedValue)
                         setSearchedValue(e.target.value)
                     }}></input>
                     <button className="search-button" onClick={() => {
@@ -65,7 +51,7 @@ const Body = () => {
                 <div className="filterRestaurant">
                     <button className="filterBtn" onClick={
                         () => {
-                            const filteredRestaurant = restaurants.filter(restaurant => {
+                            const filteredRestaurant = allRestaurants.filter(restaurant => {
                                 return restaurant.info.avgRating >= 4.3
                             })
                             // console.log(filteredRestaurant.map(restaurant => restaurant.info.avgRating))
@@ -77,7 +63,8 @@ const Body = () => {
 
                     <button className="resetBtn" onClick={
                         () => {
-                            fetechData();
+                            setRestaurants(allRestaurants)
+                            // fetechData();
                             // console.log(restaurants.map(restaurant => restaurant.info.avgRating))
                         }
                     }
