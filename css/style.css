@@ -92,3 +92,17 @@
     border-radius: 20%;
     cursor: pointer;
 }
+
+.filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.filterRestaurant, .search-container {
+    margin-left: 25px;
+}
+
+.filterBtn , .resetBtn {
+    margin: 10px 10px;
+}

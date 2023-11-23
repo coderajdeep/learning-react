@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { API_URL } from "../utils/constants";
 
 const Body = () => {
-    console.log('Body')
-    let [restaurants, setRestaurants] = useState([])
+    // console.log('Body')
+    const [restaurants, setRestaurants] = useState([])
+    const [allRestaurants, setAllRestaurants] = useState([])
+    const [searchedValue, setSearchedValue] = useState('')
 
     const fetechData = async () => {
         const swiggyData = await fetch(API_URL);
@@ -14,7 +16,15 @@ const Body = () => {
         // fetchData is being called two times
         // Why ?
         console.log("fetchSwiggyRestaurants");
+        setAllRestaurants(swigyRestaurantsResp);
         setRestaurants(swigyRestaurantsResp);
+    }
+
+    const searchRestaurants = (value) => {
+        const filteredRestaurant = allRestaurants.filter(restaurant=> {
+            return (JSON.stringify(restaurant).search(value)!==-1)
+        })
+        setRestaurants(filteredRestaurant)
     }
 
     useEffect(() => {
@@ -26,14 +36,14 @@ const Body = () => {
         return (
             <div className="shimmer-body">
                 <div className="shimmer-res-container">{
-                        (() => {
-                            const shimmer = []
-                            for (let count = 0; count < 12; ++count) {
-                                shimmer.push(<Shimmer key={count} />)
-                            }
-                            return shimmer
-                        })()
-                    }
+                    (() => {
+                        const shimmer = []
+                        for (let count = 0; count < 12; ++count) {
+                            shimmer.push(<Shimmer key={count} />)
+                        }
+                        return shimmer
+                    })()
+                }
                 </div>
             </div>
         )
@@ -41,31 +51,38 @@ const Body = () => {
 
     return (
         <div className="body">
-            <div className="search-container">
-                <form className="form" id="form">
-                    <input type="text" className="search-text" id="search-text"></input>
-                    <button className="search-button">Search Restaurant</button>
-                </form>
-            </div>
-            <div className="filterRestaurant">
-                <button className="filterBtn" onClick={
-                    () => {
-                        const filteredRestaurant = restaurants.filter(restaurant => {
-                            return restaurant.info.avgRating >= 4.3
-                        })
-                        console.log(filteredRestaurant.map(restaurant => restaurant.info.avgRating))
-                        setRestaurants(filteredRestaurant)
-                    }
-                }
-                >Filter Top Restaurant</button>
+            <div className="filter">
+                <div className="search-container">
+                    <input type="text" className="search-text" value={searchedValue} onChange={(e) => {
+                        console.log(searchedValue)
+                        setSearchedValue(e.target.value)
+                    }}></input>
+                    <button className="search-button" onClick={() => {
+                        console.log(searchedValue);
+                        searchRestaurants(searchedValue);
+                    }}>Search Restaurant</button>
+                </div>
+                <div className="filterRestaurant">
+                    <button className="filterBtn" onClick={
+                        () => {
+                            const filteredRestaurant = restaurants.filter(restaurant => {
+                                return restaurant.info.avgRating >= 4.3
+                            })
+                            // console.log(filteredRestaurant.map(restaurant => restaurant.info.avgRating))
+                            setRestaurants(filteredRestaurant)
+                        }
+                    }>
+                        Filter Top Restaurant
+                    </button>
 
-                <button className="resetBtn" onClick={
-                    () => {
-                        fetechData();
-                        console.log(restaurants.map(restaurant => restaurant.info.avgRating))
+                    <button className="resetBtn" onClick={
+                        () => {
+                            fetechData();
+                            // console.log(restaurants.map(restaurant => restaurant.info.avgRating))
+                        }
                     }
-                }
-                >Reset Restaurant</button>
+                    >Reset Restaurant</button>
+                </div>
             </div>
             <div className="res-container">
                 {
