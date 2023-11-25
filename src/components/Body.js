@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 import { API_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Body = () => {
     console.log('Body')
@@ -71,10 +72,17 @@ const Body = () => {
                     >Reset Restaurant</button>
                 </div>
             </div>
-            <div className="res-container">
-                {
-                    restaurants.map(restaurant => <RestaurantCard resObj={restaurant.info} key={restaurant.info.id} />)
-                }
+            <div className="res-container"> {
+                restaurants.map(restaurant => {
+                    const restaurantId = restaurant.info.id
+                    const dynamicRouter = `/restaurant/${restaurantId}`
+                    return (
+                        <Link to={dynamicRouter} key={restaurantId}> 
+                            <RestaurantCard resObj={restaurant.info} />
+                        </Link>
+                    )
+                })
+            }
             </div>
         </div>
     )
