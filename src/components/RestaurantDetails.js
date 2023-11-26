@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { RESTAURANT_DETAIL_URL } from "../utils/constants";
 
 const RestaurantDetails = () => {
-    const [restaurantDetails, setRestaurantDetails] = useState({});
+    const [restaurantDetails, setRestaurantDetails] = useState(null);
     const { restaurantId } = useParams()
     const getRestaurantDetails = async () => {
         const url = `${RESTAURANT_DETAIL_URL}${restaurantId}`;
@@ -16,10 +16,7 @@ const RestaurantDetails = () => {
     useEffect(() => {
         getRestaurantDetails()
     }, [])
-    if(JSON.stringify(restaurantDetails)==='{}') {
-        return <RestaurantDetailsShimmer/>
-    }
-    return (
+    return (restaurantDetails===null) ? <RestaurantDetailsShimmer/> : (
         <div>
             <h1>Name : {restaurantDetails.name}</h1>
             <p>Rating : {restaurantDetails.avgRatingString}</p>

@@ -114,3 +114,18 @@ a {
 a:hover {
     color: #33d19c;
 }
+
+.user-container {
+    border: 1px solid blue;
+    margin: 10px 30%;
+    font-size: 20px;
+    background-color: #f0f0f0;
+}
+
+.about-container {
+    text-align: center;
+}
+
+.user-container > button {
+    margin: 0px 5px 20px 5px;
+}
