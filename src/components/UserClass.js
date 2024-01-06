@@ -1,18 +1,28 @@
-import React from "react";
+import { Component } from "react"
+import CounterClass from "./CounterClass"
 
-class UserClass extends React.Component {
+class UserClass extends Component {
     constructor(props) {
         super(props)
         this.state = {
             countryCode : "+91",
             phoneNo : "8945938718"
         }
+        this.name = props.name
+        console.log(`UserClass constructor : ${this.name}`)
     }
+
+    componentDidMount() {
+        console.log(`UserClass did mount : ${this.name}`)
+    }
+
     render() {
+        console.log(`UserClass render : ${this.name}`)
         const { name, company, location } = this.props
         const { countryCode, phoneNo } = this.state
         return (
             <div className="user-container">
+                <CounterClass name = {this.name}/>
                 <p>Name : {name} (class component)</p>
                 <p>Company : {company} (class component)</p>
                 <p>Location : {location} (class component)</p>

@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import AppLayout from "./AppLayout";
-import About from "./About";
+import AboutClass from "./About";
 import Contact from "./Contact";
 import Error from "./Error";
 import Body from "./Body";
 import Cart from "./Cart";
 import RestaurantDetails from "./RestaurantDetails";
+import CounterClass from "./CounterClass";
 
 const apiRoutes = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ const apiRoutes = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <About/>
+                element: <AboutClass/>
             },
             {
                 path: '/contact',
@@ -28,6 +29,10 @@ const apiRoutes = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart/> 
+            },
+            {
+                path: '/counter',
+                element: <CounterClass/>
             },
             {
                 path: '/restaurant/:restaurantId',
