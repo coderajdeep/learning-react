@@ -13,7 +13,7 @@ const Body = () => {
     const fetechData = async () => {
         const swiggyData = await fetch(API_URL);
         const json = await swiggyData.json(swiggyData);
-        const swigyRestaurantsResp = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+        const swigyRestaurantsResp = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
         // fetchData is being called two times
         // Why ?
         console.log("API call finished");

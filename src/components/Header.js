@@ -30,6 +30,9 @@ const Header = () => {
                     <li>
                         <Link to="/cart">Cart</Link>
                     </li>
+                    <li>
+                        <Link to="/counter">Counter</Link>
+                    </li>
                 </ul>
                 <button className="loginBtn" onClick={() => {
                     doLogin(!isLoggedIn)
